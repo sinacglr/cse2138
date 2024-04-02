@@ -49,7 +49,16 @@ void signed_to_two(int num) {
     }
 }
 
-void hexademical(int num){
+// add little and big
+void hexademical(long long int num){
+    char str[20];
+
+    sprintf(str, "%lld", num);
+
+    int x = (str[0] - '0') * 1000 + (str[1] - '0') * 100 + (str[2] - '0') * 10 + (str[3] - '0');
+
+    printf("%c", hexa(x));
+
 }
 
 char hexa(int num){
@@ -127,7 +136,8 @@ int main() {
 
    printf("\n");
 
-   hexademical(1000110011110011);
+    long long int x = 1000110011110011;
+   hexademical(x);
 
    fclose(inputFile);
    return 0;
