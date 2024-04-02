@@ -1,0 +1,134 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+
+bool isUnsigned(const char *num){
+    for(int i = 0; i < strlen(num); i++){
+        if (num[i] == 'u'){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool isSigned(const char *num){
+    for(int i = 0; i<strlen(num); i++){
+        if (num[i] == 'u' || num[i] == '.'){
+            return false;
+        }
+    }
+    return true;
+}
+
+bool isFloating(const char *num){
+    for (int i = 0; i < strlen(num); i++){
+        if (num[i] == '.'){
+            return true;
+        }
+    }
+    return false;
+}
+
+void signed_to_two(int num) {
+    int binary[32];
+    int i = 0;
+    int decimal = num;
+
+    if (num < 0){
+        num = -num;
+        binary[i++] = 1;
+    }
+    else{
+        binary[i++] = 0;
+    }
+
+    while (num > 0){
+        binary[i] = num%2;
+        num /= 2;
+        i++;
+    }
+}
+
+void hexademical(int num){
+}
+
+char hexa(int num){
+    switch(num) {
+    case 0000:
+        return '0';
+    case 0001:
+        return '1';
+    case 0010:
+        return '2';
+    case 0011:
+        return '3';
+    case 0100:
+        return '4';
+    case 0101:
+        return '5';
+    case 0110:
+        return '6';
+    case 0111:
+        return '7';
+    case 1000:
+        return '8';
+    case 1001:
+        return '9';
+    case 1010:
+        return 'A';
+    case 1011:
+        return 'B';
+    case 1100:
+        return 'C';
+    case 1101:
+        return 'D';
+    case 1110:
+        return 'E';
+    case 1111:
+        return 'F';
+    }
+    return '?';
+}
+
+void unsigned_to_two(){
+}
+
+void floating(){}
+
+
+
+int main() {
+   FILE *inputFile = fopen("input.txt", "r");
+   FILE *outputFile = fopen("output.txt", "w");
+   if (inputFile == NULL){
+    printf("Error: Unable to open file.\n");
+    return 1;
+   }
+   if(outputFile == NULL){
+    printf("Error: Unable to open file.\n");
+    return 1;
+   }
+
+   //fprintf(outputFile, "This is a line written to output");
+
+   char line[100];
+   while (fgets(line, sizeof(line), inputFile)){
+    if(isSigned(line)){
+        printf("1");
+    }
+    if(isUnsigned(line)){
+        printf("2");
+    }
+    if(isFloating(line)){
+        printf("3");
+    }
+
+   }
+
+   printf("\n");
+
+   hexademical(1000110011110011);
+
+   fclose(inputFile);
+   return 0;
+}
